@@ -1,0 +1,663 @@
+.product-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background-color: #1a1a1a; 
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+
+.mac-loader {
+  position: absolute;
+  inset: 0;
+  background: #ffffff; 
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeOutLoader 0.6s ease-in-out 3.4s forwards;
+}
+
+.draw-text-svg {
+  width: 400px;
+  height: 150px;
+}
+
+.draw-text {
+  font-family: 'Brush Script MT', 'Apple Chancery', 'Snell Roundhand', cursive;
+  font-size: 90px;
+  fill: transparent;
+  stroke: #000000;
+  stroke-width: 2.5px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  /* Stroke dash logic for the drawing effect */
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: 
+    drawLine 2.5s ease-in-out forwards, 
+    fillText 0.5s ease-in-out 2s forwards;
+}
+
+@keyframes drawLine {
+  0% { stroke-dashoffset: 1000; }
+  100% { stroke-dashoffset: 0; }
+}
+
+@keyframes fillText {
+  0% { fill: transparent; }
+  100% { fill: #000000; }
+}
+
+@keyframes fadeOutLoader {
+  to { opacity: 0; visibility: hidden; }
+}
+
+
+.watermark-hide {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 300px;
+  height: 50px;
+  background-color: #1a1a1a; 
+  z-index: 5; 
+}
+
+.interaction-blocker {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  opacity: 0;
+  cursor: default;
+}
+
+.verge-frame {
+  width: 100%;
+  height: 100%;
+  border: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+/* --- UI Positioning --- */
+.ui-group {
+  position: absolute;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+}
+
+.strap-cover { top: 30%; left: 20%; }
+.middle-cover { top: 55%; right: 15%; }
+.front-cover { top: 40%; right: 15%; }
+
+/* --- Glassmorphism UI --- */
+.glass-pill {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50px;
+  padding: 10px 14px;
+  display: flex;
+  gap: 12px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+}
+
+.color-btn {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  padding: 0;
+  outline: none;
+}
+
+.color-btn:hover {
+  transform: scale(1.1);
+  border-color: rgba(255, 255, 255, 0.8);
+}
+
+.color-btn.active {
+  transform: scale(1.15);
+  border-color: #ffffff;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2), 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.connector-line {
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0) 100%);
+  width: 140px;
+}
+
+.left-line { margin-right: 15px; }
+.right-line { margin-left: 15px; }
+.mac-loader {
+  position: fixed;
+  inset: 0;
+  background-color: #000000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+}
+
+.draw-text-svg {
+  width: 300px;
+  height: 100px;
+}
+
+.draw-text {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+  font-size: 56px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  fill: transparent;
+  stroke: #ffffff;
+  stroke-width: 1.5px;
+  stroke-dasharray: 400;
+  stroke-dashoffset: 400;
+  animation: appleStrokeDraw 3s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+}
+
+@keyframes appleStrokeDraw {
+  0% {
+    stroke-dashoffset: 400;
+    fill: transparent;
+  }
+  70% {
+    stroke-dashoffset: 0;
+    fill: transparent;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    fill: #ffffff;
+    stroke: #ffffff;
+  }
+}
+
+.product-footer {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 8px 20px;
+  border-radius: 30px;
+  color: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 11px;
+  letter-spacing: 2px;
+  z-index: 20;
+  pointer-events: none;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+.product-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #ffffff;
+}
+
+.mac-loader {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+}
+
+.draw-text-svg {
+  width: 450px;
+  height: 180px;
+}
+
+.draw-text {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+  font-size: 84px;
+  font-weight: 700;
+  letter-spacing: -1px;
+  fill: url(#text-gradient);
+  stroke: url(#text-gradient);
+  stroke-width: 2px;
+  stroke-dasharray: 600;
+  stroke-dashoffset: 600;
+  animation: appleStrokeDraw 3.5s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+}
+
+@keyframes appleStrokeDraw {
+  0% {
+    stroke-dashoffset: 600;
+    fill: transparent;
+  }
+  65% {
+    stroke-dashoffset: 0;
+    fill: transparent;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    fill: url(#text-gradient);
+  }
+}
+
+
+
+.header-title {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  color: #1d1d1f;
+}
+
+.product-footer-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 30;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  color: #6e6e73;
+}
+
+.mac-loader {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.draw-text-svg {
+  width: 80vw;
+  max-width: 560px;
+  height: auto;
+  overflow: visible;
+}
+
+.draw-text {
+  font-family: 'Segoe Script', 'Brush Script MT', 'Snell Roundhand', cursive;
+  font-size: 110px;
+  font-weight: 600;
+
+  fill: none;
+  stroke: url(#harshGloss);
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+
+  stroke-dasharray: 1400;
+  stroke-dashoffset: 1400;
+
+  filter: drop-shadow(0 3px 6px rgba(255, 255, 255, 0.12));
+
+  animation:
+    draw-in 2.2s cubic-bezier(0.65, 0, 0.35, 1) forwards,
+    fill-in 0.5s ease-out 2.1s forwards;
+}
+
+@keyframes draw-in {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes fill-in {
+  to {
+    fill: url(#harshGloss);
+    stroke: rgba(255, 255, 255, 0.25);
+    stroke-width: 1.5;
+  }
+}
+
+
+
+
+.header-light-strip {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 65px;
+  background: #f4f4f4;
+  z-index: 15;
+  pointer-events: none; 
+}
+
+.app-header {
+  height: 65px;
+  min-height: 65px;
+  background: #f4f4f4;
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 20;
+}
+
+
+
+.headbg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 80px;
+  background-color: rgb(121, 121, 122);
+  
+  z-index: 2;
+  pointer-events: none;
+}
+
+.footbg {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  height: 80px; 
+  background-color: rgb(121, 121, 122);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+.footer-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-text {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+.preorder-btn {
+  display: inline-block;
+  background-color: #ffffff;
+  color: #000000;
+  padding: 10px 24px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.preorder-btn:hover {
+  background-color: #3895d3;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+.preorder-btn {
+  display: inline-block;
+  background-color: #ffffff;
+  border-radius: 30px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.preorder-btn a {
+  display: block;
+  padding: 10px 24px;
+  text-decoration: none;
+  color: #000000;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  transition: color 0.3s ease;
+}
+
+.preorder-btn:hover {
+  background-color: #3895d3;
+  transform: translateY(-2px);
+}
+
+.preorder-btn:hover a {
+  color: #ffffff;
+}
+.draw-letter {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+  font-size: 85px;
+  font-weight: 700;
+  letter-spacing: -1px;
+  fill: transparent;
+  stroke: url(#text-gradient);
+  stroke-width: 2px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 250;
+  stroke-dashoffset: 250;
+}
+
+/* Fluid Apple-style overlapping stagger from left to right */
+.l1 { animation: drawLetter 1.2s cubic-bezier(0.77, 0, 0.175, 1) 0.0s forwards, fillLetter 0.4s ease-out 0.9s forwards; }
+.l2 { animation: drawLetter 1.2s cubic-bezier(0.77, 0, 0.175, 1) 0.15s forwards, fillLetter 0.4s ease-out 1.05s forwards; }
+.l3 { animation: drawLetter 1.2s cubic-bezier(0.77, 0, 0.175, 1) 0.3s forwards, fillLetter 0.4s ease-out 1.2s forwards; }
+.l4 { animation: drawLetter 1.2s cubic-bezier(0.77, 0, 0.175, 1) 0.45s forwards, fillLetter 0.4s ease-out 1.35s forwards; }
+.l5 { animation: drawLetter 1.2s cubic-bezier(0.77, 0, 0.175, 1) 0.6s forwards, fillLetter 0.4s ease-out 1.5s forwards; }
+
+@keyframes drawLetter {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes fillLetter {
+  to {
+    fill: url(#text-gradient);
+  }
+}
+@media (max-width: 1024px) {
+  .product-container {
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .verge-frame {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+
+  .headbg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 60px;
+    background: rgba(26, 26, 26, 0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    z-index: 20;
+    pointer-events: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .ui-group {
+    position: absolute;
+    z-index: 25;
+    left: 50% !important;
+    transform: translateX(-50%);
+    width: max-content;
+    display: flex;
+    justify-content: center;
+  }
+
+  .strap-cover {
+    top: 75px !important;
+  }
+
+  .middle-cover {
+    top: 132px !important;
+  }
+
+  .front-cover {
+    display: none !important;
+  }
+
+  .glass-pill {
+    background: rgba(26, 26, 26, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    padding: 8px 14px;
+    border-radius: 40px;
+  }
+
+  .color-btn {
+    width: 24px;
+    height: 24px;
+    border-width: 2px;
+  }
+
+  .color-btn.active {
+    border-color: #ffffff;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.25), 0 0 12px currentColor;
+  }
+
+  .connector-line,
+  .left-line,
+  .right-line {
+    display: none !important;
+  }
+
+  .footbg {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: 70px;
+    background: rgba(26, 26, 26, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    z-index: 25;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .footer-content {
+    width: 100%;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer-text {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .preorder-btn {
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  }
+
+  .preorder-btn a {
+    padding: 8px 18px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #000000;
+  }
+}
+
+@media (max-width: 480px) {
+  .headbg {
+    height: 56px;
+  }
+
+  .strap-cover {
+    top: 68px !important;
+  }
+
+  .middle-cover {
+    top: 122px !important;
+  }
+
+  .glass-pill {
+    padding: 6px 12px;
+    gap: 10px;
+  }
+
+  .color-btn {
+    width: 22px;
+    height: 22px;
+  }
+
+  .footbg {
+    height: 64px;
+  }
+
+  .footer-text {
+    font-size: 12px;
+  }
+
+  .preorder-btn a {
+    padding: 7px 14px;
+    font-size: 11px;
+  }
+}
+@media (max-width: 1024px) {
+
+  .strap-cover {
+    top: 200px !important;    
+    left: 0px !important;   
+    right: auto !important;
+  }
+
+  .middle-cover {
+    top: 400px !important;    
+    right: 0px !important; 
+    left: auto !important;
+  }
+   .front-cover {
+    top: 280px !important;    
+    right: 0px !important; 
+    left: auto !important;
+  }
+}
