@@ -1,0 +1,16 @@
+name: Vercel Load Test
+
+on:
+  workflow_dispatch: # Allows you to run it manually from the GitHub Actions tab
+
+jobs:
+  k6_load_test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run k6 load test
+        uses: grafana/k6-action@v0.3.0
+        with:
+          filename: test.js
