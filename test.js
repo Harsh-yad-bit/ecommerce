@@ -1,25 +1,26 @@
 import http from 'k6/http';
 import { check, sleep } from 'k6';
 
+// List of your proxy server addresses (e.g., HTTP/HTTPS proxies)
+const proxies = [
+  'http://proxy-server-1.com:8080',
+  'http://proxy-server-2.com:8080',
+  'http://proxy-server-3.com:8080',
+];
+
 export const options = {
-  stages: [
-    { duration: '30s', target: 10 },  // Ramp up to 10 users over 30 seconds
-    { duration: '1m', target: 25 },   // Ramp up to 25 users over 1 minute
-    { duration: '1m', target: 50 },   // Ramp up to 50 users (your next target) over 1 minute
-    { duration: '1m', target: 100 },  // Push to 100 users to find maximum capacity
-    { duration: '30s', target: 0 },   // Scale down to 0
-  ],
-  thresholds: {
-    http_req_duration: ['p(95)<1000'], // 95% of requests should be below 1000ms
-    http_req_failed: ['rate<0.05'],    // Error rate should stay below 5%
-  },
+  vus: 50,
+  duration: '2m',
 };
 
 export default function () {
+  // Randomly pick a proxy for this virtual user iteration
+  const randomProxy = proxies[Math.floor(Math.random() * proxies.length)];
+
   const params = {
-    headers: {
-      'Connection': 'keep-alive',
-    },
+    headers: { 'Connection': 'keep-alive' },
+    // Tell k6 to route this request through the selected proxy IP
+    proxy: randomProxy, 
   };
 
   const res = http.get('https://ecommerceheadset.vercel.app', params);
@@ -28,5 +29,5 @@ export default function () {
     'is status 200': (r) => r.status === 200,
   });
   
-  sleep(1); // Pause 1 second between iterations per virtual user
+  sleep(1);
 }
